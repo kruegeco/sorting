@@ -1,6 +1,6 @@
 // Header Guards 
-#ifndef __AUDS__
-#define __AUDS__
+#ifndef __Celebrity__
+#define __Celebrity__
 
 // Includes
 #include <iostream>
@@ -16,7 +16,7 @@ public:
 	/*
 	 *Default constructor
 	 */
-	Celebrity() { }
+	//Celebrity() { }
 
 	/*
 	 *Constructor
@@ -27,6 +27,16 @@ public:
 		this -> area = area;
 		this -> met = met;
 	}
+	
+	/*
+	 *Constructor 2
+	 */
+	Celebrity(std::string name, int howBadly, bool met) {
+		this -> name = name;
+		this -> howBadly = howBadly;
+		area = "";
+		this -> met = met;
+	}	
 
 	/*
 	 *Destructor
@@ -94,22 +104,66 @@ public:
 	Random Vector Creator
 	@param size of celebrity vector
 	*/
-	Celebrity& randomVector(unsigned long size) {
+	Celebrity& randomVector(unsigned int size) {
 		//Initialize random seed
 		srand (time(NULL));
 		
 		//Inititialize vector
-		testVec = new Celebrity[size]
+		testVect = new std::vector<Celebrity>;
+		//Initialize variables for celebrity (FIXME; need description? remove that var?)
+		std::string tName[8];
+		int tHowBad;
+		bool tMet;
+		
+		for (j=0; j<size; j++) {
+			//random char (90-64) + 65
+			for (i=0; i<8; i++) {
+				tName[i] = (char)(rand() % 25) + 65;
+			}
+			tHowBad = (rand() % 10);
+			tMet = (bool)(rand() % 1);
+			
+			testVect.push_back(new Celebrity(tName, tHowBad, tMet));
+		}
+		
+		return testVect;
 	}
+	
+	/**
+	Random Celebrity Creator
+	*/
+	Celebrity() {		
+		//Declare temporary variables for celebrity
+		std::string tName[8];
+		int tHowBad;
+		bool tMet;
+			
+		//random char (90-64) + 65
+		for (i=0; i<8; i++) {
+			tName[i] = (char)(rand() % 25) + 65;
+		}
+		tHowBad = (rand() % 10);
+		tMet = (bool)(rand() % 1);
+
+		name = tName;
+		HowBadly = tHowBad; 
+		met = tMet;
+	}
+	
+	/*
+	void setTestVect(&Celebrity) {
+		testVect = &Celebrity;
+	}
+	
+	// Vector for Celebities
+	std::vector <Celebrity>* testVect;
+	*/
 	
 private:
 	std::string name;
 	int howBadly;
 	std::string area;
 	bool met;
-	
-	// Vector for Celebities
-	Celebrity* testVec;
 	
 };
 
