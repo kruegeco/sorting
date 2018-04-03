@@ -9,7 +9,7 @@
 #include <time.h>   //Used for rand seed 
 #include <string>
 
-Class Celebrity
+class Celebrity
 {
 public:
 
@@ -46,64 +46,47 @@ public:
 	/*
 	 *overloads less than
 	 */
-	Celebrity operator<(const Celebrity& c1, const Celebrity& c2) 
+	bool operator<(const Celebrity & c2) 
 	{
-		if (c1.howBadly < c2.howBadly) {
+		if (howBadly < c2.howBadly) {
 			return true;
 		}
-		else if (c1.howBadly > c2.howBadly) {
+		else if (howBadly > c2.howBadly) {
 			return false;
 		}
 
-		if (c1.met < c2.met) {
+		if (met < c2.met) {
 			return true;
 		}
-		else if (c1.met > c2.met) {
+		else if (met > c2.met) {
 			return false;
 		}
 
-		if (c1.name < c2.name) {
+		if (name < c2.name) {
 			return true;
 		}
-		else if (c1.name > c2.name) {
+		else if (name > c2.name) {
 			return false;
 		}
 		else {
 			return true;
 		}
 	}
-	Celebrity operator<=(const Celebrity& c1, const Celebrity& c2)
+	bool operator<=(const Celebrity & c2)
 	{
-		if (c1.howBadly <= c2.howBadly) {
+		if (howBadly <= c2.howBadly) {
 			return true;
 		}
-		else if (c1.howBadly > c2.howBadly) {
+		else if (howBadly > c2.howBadly) {
 			return false;
 		}
 
-		//The code below in this method will never be reached, 
-		// since there is no value that is not less than, greater than, or equal to, not covered
-		if (c1.met <= c2.met) {
-			return true;
-		}
-		else if (c1.met > c2.met) {
-			return false;
-		}
-
-		if (c1.name <= c2.name) {
-			return true;
-		}
-		else if (c1.name > c2.name) {
-			return false;
-		}
-		else {
-			return true;
-		}
 	}
 	/**
 	Random Vector Creator
 	@param size of celebrity vector
 	*/
+	/*
 	Celebrity& randomVector(unsigned int size) {
 		//Initialize random seed
 		srand (time(NULL));
@@ -115,9 +98,9 @@ public:
 		int tHowBad;
 		bool tMet;
 		
-		for (j=0; j<size; j++) {
+		for (int j=0; j<size; j++) {
 			//random char (90-64) + 65
-			for (i=0; i<8; i++) {
+			for (int i=0; i<8; i++) {
 				tName[i] = (char)(rand() % 25) + 65;
 			}
 			tHowBad = (rand() % 10);
@@ -128,25 +111,24 @@ public:
 		
 		return testVect;
 	}
-	
+	*/
 	/**
 	Random Celebrity Creator
 	*/
 	Celebrity() {		
 		//Declare temporary variables for celebrity
-		std::string tName[8];
+		std::string tName = "        ";
 		int tHowBad;
 		bool tMet;
 			
 		//random char (90-64) + 65
-		for (i=0; i<8; i++) {
-			tName[i] = (char)(rand() % 25) + 65;
+		for (int i=0; i<8; i++) {
+			tName[i] = (rand() % 25) + 65;
 		}
 		tHowBad = (rand() % 10);
-		tMet = (bool)(rand() % 1);
-
+		tMet = (bool)(rand() % 2);
 		name = tName;
-		HowBadly = tHowBad; 
+		howBadly = tHowBad; 
 		met = tMet;
 	}
 	
@@ -159,9 +141,9 @@ public:
 	std::vector <Celebrity>* testVect;
 	*/
 	
-private:
-	std::string name;
 	int howBadly;
+	std::string name;
+private:
 	std::string area;
 	bool met;
 	
