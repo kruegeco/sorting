@@ -60,6 +60,8 @@ public:
 			return false;
 		}
 
+		//The code below in this method will never be reached, 
+		// since there is no value that is not less than, greater than, or equal to, not covered
 		if (c1.met <= c2.met) {
 			return true;
 		}
